@@ -1,8 +1,8 @@
 import logging
 from contextvars import ContextVar
 
-from loggersetup.json_formatter import JSONFormatter
-from loggersetup.uvicorn_logger_name_filter import UvicornLoggerNameFilter
+from logninja.json_formatter import JSONFormatter
+from logninja.uvicorn_logger_name_filter import UvicornLoggerNameFilter
 
 
 def setup_logging(
