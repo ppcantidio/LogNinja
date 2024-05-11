@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="logmancer",
+    name="loggersetup",
     version="0.1.0",
     author="Pedro Cantidio",
     author_email="ppcantidio@gmail.com",
