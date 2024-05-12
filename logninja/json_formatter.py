@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 import logging
+from ast import List
 from contextvars import ContextVar
 
 LOG_RECORD_BUILTIN_ATTRS = {
@@ -42,13 +43,9 @@ FMT_KEYS = {
 
 
 class JSONFormatter(logging.Formatter):
-
     def format(self, record: logging.LogRecord) -> str:
         message = self._prepare_log_dict(record)
         return json.dumps(message, default=str)
-
-    def set_contextvar(self, contextvar: ContextVar):
-        self.contextvar = contextvar
 
     def _prepare_log_dict(self, record: logging.LogRecord):
         always_fields = {
@@ -76,8 +73,5 @@ class JSONFormatter(logging.Formatter):
         for key, val in record.__dict__.items():
             if key not in LOG_RECORD_BUILTIN_ATTRS:
                 message[key] = val
-
-        if self.contextvar:
-            message[self.contextvar.name] = self.contextvar.get()
 
         return message
