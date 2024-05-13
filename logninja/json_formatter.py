@@ -1,8 +1,6 @@
 import datetime as dt
 import json
 import logging
-from ast import List
-from contextvars import ContextVar
 
 LOG_RECORD_BUILTIN_ATTRS = {
     "args",

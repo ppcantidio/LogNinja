@@ -4,7 +4,8 @@ from typing import List
 
 from logninja.contextvars_filter import ContextVarsFilter
 from logninja.json_formatter import JSONFormatter
-from logninja.uvicorn_logger_name_filter import UvicornLoggerNameFilter
+
+logger = logging.getLogger("logninja")
 
 
 def setup_logging(
@@ -14,12 +15,12 @@ def setup_logging(
 ) -> None:
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(fmt=fmt)
+    stream_handler.addFilter(ContextVarsFilter(contextvars=contextvars))
 
-    root_logger = logging.getLogger("root")
+    root_logger = logging.getLogger()
 
     root_logger.setLevel(level)
 
     root_logger.addHandler(stream_handler)
 
-    root_logger.addFilter(UvicornLoggerNameFilter())
-    root_logger.addFilter(ContextVarsFilter(contextvars=contextvars))
+    logger.info("Logging setup complete")
