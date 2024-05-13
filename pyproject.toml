@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 [project.urls]
-homepage = "https://github.com/ppcantidio/logmancer.py"
+homepage = "https://github.com/ppcantidio/logninja.py"
 
 [project.optional-dependencies]
 starlette = ["starlette>=0.37.2,<0.38.0"]
