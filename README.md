@@ -214,3 +214,6 @@ By passing the `exc_info`, LogNinja automatically builds a JSON log like this:
 }
 ```
 **Important Notice**: This functionality contains code derived from the `structlog` project, available at https://github.com/hynek/structlog. Changes were made starting from May 24th, 2024. The original code is licensed under the MIT License or Apache-2.0. Please ensure to comply with these licenses when using LogNinja.
+
+## License
+This project is licensed under the terms of the MIT license.
