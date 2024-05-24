@@ -2,7 +2,7 @@ import contextvars
 import logging
 import time
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Tuple
 
 from starlette import status
 from starlette.datastructures import MutableHeaders
@@ -18,9 +18,9 @@ class LogNinjaASGIMiddleware:
     app: ASGIApp
 
     logger: logging.Logger = logninja_logger
-    contextvars_by_headers: List[contextvars.ContextVar] = field(
-        default_factory=lambda: []
-    )
+    contextvars_by_headers: List[
+        contextvars.ContextVar | Tuple[contextvars.ContextVar, str]
+    ] = field(default_factory=lambda: [])
     contextvars_by_app_state: List[contextvars.ContextVar] = field(
         default_factory=lambda: []
     )
@@ -86,8 +86,13 @@ class LogNinjaASGIMiddleware:
 
     async def _set_contextvars_by_headers(self, headers: MutableHeaders) -> None:
         for contextvar in self.contextvars_by_headers:
-            if headers.get(contextvar.name) is not None:
-                contextvar.set(headers.get(contextvar.name))
+            header_name = (
+                contextvar.name
+                if isinstance(contextvar, contextvars.ContextVar)
+                else contextvar[1]
+            )
+            if headers.get(header_name) is not None:
+                contextvar.set(headers.get(header_name))
 
     async def _set_contextvars_by_app_state(self, scope: Scope) -> None:
         for contextvar in self.contextvars_by_app_state:
