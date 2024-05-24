@@ -1,4 +1,11 @@
-# LogNinja
+# *LogNinja*: Simple logging setup for Python
+<p align="center">
+   <a href="https://github.com/ppcantidio/LogNinja/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-C06524" alt="License: MIT" /></a>
+   <a href="https://pypi.org/project/LogNinja/"><img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue" alt="Supported Python versions of the current PyPI release." /></a>
+   <a href="https://www.pepy.tech/projects/LogNinja"><img src="https://static.pepy.tech/personalized-badge/LogNinja?&units=international_system&left_color=grey&right_color=blue&left_text=downloads" alt="Downloads" /></a>
+</p>
+
+<p align="center"><em>Simplified. Efficient. Customizable.</em></p>
 LogNinja is a simple logging setup to be used in Python applications.
 
 ## Installation
