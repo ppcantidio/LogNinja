@@ -2,6 +2,8 @@ import datetime as dt
 import json
 import logging
 
+from logninja.traceback import format_exception
+
 LOG_RECORD_BUILTIN_ATTRS = {
     "args",
     "asctime",
@@ -53,10 +55,7 @@ class JSONFormatter(logging.Formatter):
             ).isoformat(),
         }
         if record.exc_info is not None:
-            always_fields["exc_info"] = self.formatException(record.exc_info)
-
-        if record.stack_info is not None:
-            always_fields["stack_info"] = self.formatStack(record.stack_info)
+            always_fields["exc_info"] = format_exception(exc_info=record.exc_info)
 
         message = {
             key: (
