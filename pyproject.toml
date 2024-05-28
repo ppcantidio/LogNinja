@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "logninja"
-version = "0.1.6"
+version = "0.1.7"
 authors = [{ name = "Pedro Cantidio", email = "ppcantidio@gmail.com" }]
 description = "A log configuration library for Python projects."
 readme = "README.md"
