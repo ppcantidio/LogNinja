@@ -1,8 +1,11 @@
 import logging
 
+from logninja.decorators import log_execution
 
+
+@log_execution(level=logging.DEBUG, capture_exception=True, raise_exception=False)
 def run(logger: logging.Logger) -> None:
-    logger.info("Hello, world!", extra={"x-Trace-Id": "adfdfs"})
+    logger.info("Hello, world!", extra={"x-Trace-Id": "adfdfs", "x-user": "admin"})
     logger.debug(
         "Loading configuration file /adasd/asdasd/qeqwe/qwrqwrqwr/sdgsdgsdg/werwerwer/dfgerert/ertertert/ertetert/werwerwer"
     )
@@ -13,14 +16,8 @@ def run(logger: logging.Logger) -> None:
     logger.critical("Out of memory!")
     logger.info("Server exited with code=-1")
 
-    def divide() -> None:
-        number = 1
-        divisor = 0
-        foos = ["foo"] * 100
-        logger.debug("in divide")
-        try:
-            number / divisor
-        except:
-            logger.exception("An error of some kind occurred!")
-
-    divide()
+    number = 1
+    divisor = 0
+    foos = ["foo"] * 100
+    logger.debug("in divide")
+    number / divisor

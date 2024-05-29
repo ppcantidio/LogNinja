@@ -18,7 +18,7 @@ setup_logging(
     log_console_config=LogConsoleConfig(
         level=logging.DEBUG,
         log_console_type=LogConsoleType.RICH,
-        extra_vars=["x-Trace-Id"],
+        extra_vars=["x-Trace-Id", "x-user"],
     ),
 )
 
