@@ -19,8 +19,9 @@ pip install logninja
 First, set up LogNinja:
 ```python
 from logninja import setup_logging
+from logninja.configs import LogConsoleConfig
 
-setup_logging()
+setup_logging(log_console_config=LogConsoleConfig())
 ```
 
 This basic setup will format all your logs as JSON.
@@ -36,11 +37,11 @@ from my_custom_formatter import CustomFormatter
 from my_globals_contextvar import trace_id
 
 from logninja import setup_logging
+from logninja.configs import LogConsoleConfig
 
 setup_logging(
-    level=logging.DEBUG,
-    fmt=CustomFormatter,
     contextvars=[trace_id],
+    log_file_config=LogConsoleConfig(),
 )
 ```
 
@@ -105,15 +106,15 @@ async def my_coroutine():
 
 When you use the `log_execution` decorator, it generates logs at the start and end of the function or coroutine execution. Here are examples of what these logs look like in both console and JSON formats.
 
-#### Console Format
-In the console format, the logs are displayed as plain text. Here's an example:
+#### Ninja Format
+With ninja format, the logs are displayed as plain text. Here's an example:
 
 ```plaintext
-INFO:logninja:Starting execution of function my_function
-INFO:logninja:my_function executed in 0.0020 seconds
+['2024-05-30 18:58:28'] [DEBUG   ] 'my_function' executed in 0.0183 seconds   [logninja] decorators.py:55
+['2024-05-30 18:58:28'] [DEBUG   ] 'my_function' executed in 0.0183 seconds   [logninja] decorators.py:55
 ```
 
-### JSON Format
+### Ninja JSON Format
 In the JSON format, the logs are displayed as JSON objects. Here's an example:
 ```json
 {
