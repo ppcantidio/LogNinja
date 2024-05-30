@@ -3,13 +3,13 @@ import json
 import logging
 import unittest
 
-from logninja.json_formatter import JSONFormatter
+from logninja.ninja_json_formatter import NinjaJsonFormatter
 
 
-class JSONFormatterTests(unittest.TestCase):
+class NinjaJsonFormatterTests(unittest.TestCase):
 
     def test_format(self):
-        formatter = JSONFormatter()
+        formatter = NinjaJsonFormatter()
         record = logging.LogRecord(
             name="test_logger",
             level=logging.INFO,

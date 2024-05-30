@@ -135,7 +135,7 @@ In the JSON format, the logs are displayed as JSON objects. Here's an example:
 The JSON logs contain the same information as the console logs, but they also include the log level, the logger name, and any extra parameters that were passed to the function or coroutine.
 
 ### Format Exceptions
-All logged exceptions are automatically formatted by our `JSONFormatter`:
+All logged exceptions are automatically formatted by our `NinjaJsonFormatter`:
 ```python
 import logging
 

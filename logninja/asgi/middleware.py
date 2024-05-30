@@ -10,7 +10,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
-from logninja import logger as logninja_logger
+from logninja.logger import logger as logninja_logger
 
 
 @dataclass

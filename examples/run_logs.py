@@ -5,7 +5,7 @@ from logninja.decorators import log_execution
 
 @log_execution(level=logging.DEBUG, capture_exception=True, raise_exception=False)
 def run(logger: logging.Logger) -> None:
-    logger.info("Hello, world!", extra={"x-Trace-Id": "adfdfs", "x-user": "admin"})
+    logger.info("Hello, world!", extra={"X-Trace-Id": "adfdfs", "x-user": "admin"})
     logger.debug(
         "Loading configuration file /adasd/asdasd/qeqwe/qwrqwrqwr/sdgsdgsdg/werwerwer/dfgerert/ertertert/ertetert/werwerwer"
     )

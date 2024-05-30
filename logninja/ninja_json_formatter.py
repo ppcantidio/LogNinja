@@ -1,34 +1,11 @@
 import datetime as dt
 import json
 import logging
+from typing import Union
 
+from logninja.options import All, Only
 from logninja.traceback import format_exception
-
-LOG_RECORD_BUILTIN_ATTRS = {
-    "args",
-    "asctime",
-    "created",
-    "exc_info",
-    "exc_text",
-    "filename",
-    "funcName",
-    "levelname",
-    "levelno",
-    "lineno",
-    "module",
-    "msecs",
-    "message",
-    "msg",
-    "name",
-    "pathname",
-    "process",
-    "processName",
-    "relativeCreated",
-    "stack_info",
-    "thread",
-    "threadName",
-    "taskName",
-}
+from logninja.utils import get_extras
 
 FMT_KEYS = {
     "level": "levelname",
@@ -42,7 +19,11 @@ FMT_KEYS = {
 }
 
 
-class JSONFormatter(logging.Formatter):
+class NinjaJsonFormatter(logging.Formatter):
+    def __init__(self, extras: Union[All, Only, None] = All):
+        super().__init__()
+        self.extras = extras
+
     def format(self, record: logging.LogRecord) -> str:
         message = self._prepare_log_dict(record)
         return json.dumps(message, default=str)
@@ -67,8 +48,8 @@ class JSONFormatter(logging.Formatter):
         }
         message.update(always_fields)
 
-        for key, val in record.__dict__.items():
-            if key not in LOG_RECORD_BUILTIN_ATTRS:
-                message[key] = val
+        extras = get_extras(record=record, extras=self.extras)
+        for key, value in extras.items():
+            message[key] = value
 
         return message

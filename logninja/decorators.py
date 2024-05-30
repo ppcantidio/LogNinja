@@ -3,7 +3,7 @@ import functools
 import logging
 import time
 
-from logninja import logger as logninja_logger
+from logninja.logger import logger as logninja_logger
 
 
 def log_execution(
@@ -47,18 +47,18 @@ def log_execution(
         def log_start(*args, **kwargs):
             params = {"args": list(args), "kwargs": kwargs}
             logger_with_level(
-                f"Starting execution of function {func.__qualname__}",
+                f"Starting execution of function '{func.__qualname__}'",
                 extra={"params": params},
             )
 
         def log_end(end: float, start: float):
             logger_with_level(
-                f"{func.__qualname__} executed in {end - start:.4f} seconds"
+                f"'{func.__qualname__}' executed in {end - start:.4f} seconds"
             )
 
         def log_exception(exc: Exception):
             logger.exception(
-                f"An error occurred while executing {func.__qualname__}",
+                f"An error occurred while executing '{func.__qualname__}'",
                 exc_info=exc,
             )
             if raise_exception:
