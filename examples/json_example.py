@@ -16,6 +16,10 @@ setup_logging(
         level=logging.ERROR,
         fmt=NinjaJsonFormatter(extras=All()),
     ),
+    log_console_config=LogConsoleConfig(
+        level=logging.DEBUG,
+        fmt=NinjaJsonFormatter(extras=All()),
+    ),
 )
 
 
