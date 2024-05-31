@@ -145,6 +145,7 @@ def extract(
 
         stacks.append(stack)
         append = stack.frames.append
+        from traceback import walk_tb
 
         for frame_summary, line_no in walk_tb(traceback):
             filename = frame_summary.f_code.co_filename

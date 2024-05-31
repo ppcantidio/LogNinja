@@ -30,7 +30,7 @@ class NinjaFormatter(logging.Formatter):
         formatted_extras = format_extras(extras)
 
         structured_message = (
-            f"{message_time}{message_level} {message} [{record.name}] {filepath}"
+            f"{message_time}{message_level} {message} ({record.name}) {filepath}"
             + formatted_extras
         )
 

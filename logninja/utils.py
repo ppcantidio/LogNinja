@@ -105,7 +105,7 @@ def format_time(record: logging.LogRecord, fmt: str = "%Y-%m-%d %H:%M:%S") -> st
     timestamp = record.created
     dt_object = datetime.fromtimestamp(timestamp)
     formatted_time = dt_object.strftime(fmt)
-    return f"{[formatted_time]}"
+    return f"[{formatted_time}]"
 
 
 def format_extras(extras: dict) -> str:

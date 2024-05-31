@@ -7,6 +7,7 @@ from examples.run_logs import run
 from logninja import setup_logging
 from logninja.configs import LogConsoleConfig, LogFileConfig
 from logninja.ninja_json_formatter import NinjaJsonFormatter
+from logninja.ninja_rich_console import NinjaRichConsole
 from logninja.options import All
 
 setup_logging(
@@ -19,6 +20,7 @@ setup_logging(
     log_console_config=LogConsoleConfig(
         level=logging.DEBUG,
         fmt=NinjaJsonFormatter(extras=All()),
+        # console=NinjaRichConsole(),
     ),
 )
 

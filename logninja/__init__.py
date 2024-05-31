@@ -39,7 +39,9 @@ def setup_logging(
 def _setup_log_console_handler(
     log_console_config: LogConsoleConfig,
 ) -> logging.StreamHandler:
-    console_handler = NinjaHandler(formatter=log_console_config.fmt)
+    console_handler = NinjaHandler(
+        formatter=log_console_config.fmt, console=log_console_config.console
+    )
     console_handler.setLevel(log_console_config.level)
     return console_handler
 

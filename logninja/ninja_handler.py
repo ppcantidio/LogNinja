@@ -1,37 +1,40 @@
+import copy
+import json
 import logging
+from operator import is_
 from typing import Union
 
+from logninja.console_interface import ConsoleInterface
 from logninja.ninja_console import NinjaConsole
 from logninja.ninja_formatter import NinjaFormatter
 from logninja.ninja_json_formatter import NinjaJsonFormatter
-from logninja.ninja_rich_formatter import NinjaRichFormatter
 
 
 class NinjaHandler(logging.StreamHandler):
     def __init__(
-        self, formatter: Union[NinjaJsonFormatter, NinjaRichFormatter, NinjaFormatter]
+        self,
+        formatter: Union[NinjaJsonFormatter, NinjaFormatter],
+        console: ConsoleInterface = NinjaConsole(),
     ):
         super().__init__()
-        if not isinstance(
-            formatter, (NinjaJsonFormatter, NinjaRichFormatter, NinjaFormatter)
-        ):
+        if not isinstance(formatter, (NinjaJsonFormatter, NinjaFormatter)):
             raise ValueError("Invalid formatter")
 
-        self.console = NinjaConsole(stream=self.stream)
-
-        if isinstance(formatter, NinjaRichFormatter):
-            try:
-                from rich import get_console
-
-                self.console = get_console()
-            except ImportError:
-                raise ImportError(
-                    "Rich is required for rich logging. Please install it using `pip install logninja[rich]`"
-                )
-
+        self.console = console
         self.setFormatter(formatter)
 
     def emit(self, record: logging.LogRecord) -> None:
         formatted_message = self.format(record)
-        self.console.print(formatted_message)
+        if self.is_json(formatted_message):
+            self.console.print_json(formatted_message)
+        else:
+            self.console.print(formatted_message)
         self.flush()
+
+    def is_json(self, message: str) -> bool:
+        try:
+            message_copy = copy.deepcopy(message)
+            json.loads(message_copy)
+            return True
+        except Exception:
+            return False
