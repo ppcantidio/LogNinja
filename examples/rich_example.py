@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from examples.run_logs import run, run_2
+from examples.run_logs import run
 from logninja import setup_logging
 from logninja.configs import LogConsoleConfig, LogFileConfig
 from logninja.ninja_formatter import NinjaFormatter

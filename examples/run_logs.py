@@ -18,7 +18,6 @@ def run(logger: logging.Logger) -> None:
 
     number = 1
     divisor = 0
-    foos = ["foo"] * 100
     logger.debug("in divide")
     number / divisor
     logger.debug("final")
