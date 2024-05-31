@@ -91,3 +91,4 @@ def log_execution(
         return async_wrapper if asyncio.iscoroutinefunction(func) else sync_wrapper
 
     return decorator
+    return decorator

@@ -7,7 +7,6 @@ from logninja.ninja_json_formatter import NinjaJsonFormatter
 
 
 class NinjaJsonFormatterTests(unittest.TestCase):
-
     def test_format(self):
         formatter = NinjaJsonFormatter()
         record = logging.LogRecord(
