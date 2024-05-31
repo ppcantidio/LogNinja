@@ -1,6 +1,5 @@
 import logging
 from dataclasses import dataclass
-from typing import Optional
 
 from logninja.console_interface import ConsoleInterface
 from logninja.ninja_console import NinjaConsole

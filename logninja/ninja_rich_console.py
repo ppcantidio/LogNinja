@@ -1,7 +1,12 @@
 import re
 from typing import List
 
-from rich.console import Console
+try:
+    from rich.console import Console
+except ImportError:
+    raise ImportError(
+        "rich library is required for NinjaRichConsole, install it with pip install rich"
+    )
 
 HTTP_METHODS: List[str] = [
     "GET",
