@@ -20,7 +20,7 @@ setup_logging(
     log_console_config=LogConsoleConfig(
         level=logging.DEBUG,
         fmt=NinjaJsonFormatter(extras=All()),
-        # console=NinjaRichConsole(),
+        console=NinjaRichConsole(),
     ),
 )
 

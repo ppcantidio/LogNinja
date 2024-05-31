@@ -16,10 +16,13 @@ HTTP_METHODS: List[str] = [
 
 
 class NinjaRichConsole(Console):
-    def print(self, message: str, **kwargs):
-        if isinstance(message, str):
-            message = self._custom_theme(message)
-        super().print(message, **kwargs)
+    def print(self, *objects: str, **kwargs) -> None:
+        if all(isinstance(i, str) for i in objects):
+            objects = [self._custom_theme(i) for i in objects]
+            message = "".join(objects)
+            super().print(message, **kwargs)
+            return
+        super().print(*objects, **kwargs)
 
     def _custom_theme(self, message: str) -> str:
         message = self._replace_loglevel(message)
@@ -38,7 +41,7 @@ class NinjaRichConsole(Console):
         message = message.replace("[CRITICAL]", "[bold red][CRITICAL][/bold red]")
         return message
 
-    def _replace_datetime(self, message: str):
+    def _replace_datetime(self, message: str) -> str:
         string = re.sub(
             r"(\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\])", r"[dim]\g<0>[/dim]", message
         )
@@ -50,11 +53,11 @@ class NinjaRichConsole(Console):
         )
         return string
 
-    def _replace_parentheses_content(self, message: str):
+    def _replace_parentheses_content(self, message: str) -> str:
         message = re.sub(r"(\(\w+\))", r"[orange4]\g<0>[/orange4]", message)
         return message
 
-    def _replace_extras(self, message: str):
+    def _replace_extras(self, message: str) -> str:
         result = re.sub(r"(?<=\=)([\w-]+)", r"[blue]\g<0>[/blue]", message)
         result = re.sub(r"([\w-]+)(?=\=)", r"[yellow]\g<0>[/yellow]", result)
         return result

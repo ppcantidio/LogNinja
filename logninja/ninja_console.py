@@ -9,16 +9,13 @@ class NinjaConsole(ConsoleInterface):
     def __init__(self) -> None:
         self.stream = sys.stderr
 
-    def print(self, message: str):
+    def print(self, *objects: str, **kwargs) -> None:
         try:
             stream = self.stream
-            stream.write(message + self.terminator)
+            final_message = "".join(objects)
+            stream.write(final_message + self.terminator)
         except RecursionError:
             raise
 
-    def print_json(self, message: str):
-        try:
-            stream = self.stream
-            stream.write(message + self.terminator)
-        except RecursionError:
-            raise
+    def print_json(self, json: str, *args, **kwargs) -> None:
+        self.print(json, *args, **kwargs)
