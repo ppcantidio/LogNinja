@@ -24,4 +24,4 @@ setup_logging(
 
 
 logger = logging.getLogger("logninja")
-run_2(logger=logger)
+run(logger=logger)

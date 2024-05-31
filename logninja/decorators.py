@@ -10,7 +10,6 @@ def log_execution(
     logger: logging.Logger = logninja_logger,
     level: int = logging.INFO,
     capture_exception: bool = False,
-    raise_exception: bool = False,
 ):
     """
     Decorator to log the execution time of a function or coroutine.
@@ -19,21 +18,12 @@ def log_execution(
         logger (logging.Logger): The logger to be used.
         level (int): The logging level to be used.
         capture_exception (bool): Whether to capture exceptions. Defaults to False.
-        raise_exception (bool): Whether to raise exceptions. Defaults to False.
-
-    Warning:
-        If capture_exception is True and raise_exception is False, the exception will be logged but not raised.
-        The return value will be the exception object.
 
     Returns:
         Callable: The decorator.
     """
 
     def decorator(func):
-        if (raise_exception is True) and (capture_exception is False):
-            raise ValueError(
-                "Cannot raise exception without capturing it, set capture_exception to True"
-            )
         levels = {
             logging.CRITICAL: "critical",
             logging.ERROR: "error",
@@ -61,8 +51,7 @@ def log_execution(
                 f"An error occurred while executing '{func.__qualname__}'",
                 exc_info=exc,
             )
-            if raise_exception:
-                raise exc
+            raise exc
 
         @functools.wraps(func)
         def sync_wrapper(*args, **kwargs):

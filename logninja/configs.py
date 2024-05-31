@@ -19,3 +19,5 @@ class LogConsoleConfig:
     level: int = logging.INFO
     fmt: logging.Formatter = NinjaJsonFormatter()
     console: ConsoleInterface = NinjaConsole()
+    print_exeption: bool = True
+    sys_excepthook: bool = False

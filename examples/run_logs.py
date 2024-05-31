@@ -3,7 +3,7 @@ import logging
 from logninja.decorators import log_execution
 
 
-@log_execution(level=logging.DEBUG, capture_exception=True, raise_exception=False)
+@log_execution(level=logging.DEBUG, capture_exception=True)
 def run(logger: logging.Logger) -> None:
     logger.info("Hello, world!", extra={"X-Trace-Id": "adfdfs", "x-user": "admin"})
     logger.debug(
@@ -21,6 +21,7 @@ def run(logger: logging.Logger) -> None:
     foos = ["foo"] * 100
     logger.debug("in divide")
     number / divisor
+    logger.debug("final")
 
 
 def run_2(logger: logging.Logger) -> None:
