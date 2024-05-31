@@ -2,7 +2,6 @@ import copy
 import json
 import logging
 import sys
-from operator import is_
 from typing import Union
 
 from logninja.console_interface import ConsoleInterface
