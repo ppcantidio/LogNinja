@@ -1,6 +1,6 @@
 import logging
 from contextvars import ContextVar
-from typing import List, Mapping
+from typing import List
 
 from logninja.configs import LogConsoleConfig, LogFileConfig
 from logninja.contextvars_filter import ContextVarsFilter
@@ -34,25 +34,6 @@ def setup_logging(
     root_logger.addFilter(ContextVarsFilter(contextvars=contextvars))
 
     logger.debug("Logging setup complete", extra=dict(users="adfdfs"))
-
-
-def setup_logging_by_settings_file(
-    settings: Mapping[str, str],
-    contextvars: List[ContextVar] = [],
-):
-    # TODO: Implement this function
-    # LOG_CONSOLE_LEVEL = os.getenv("LOG_CONSOLE_LEVEL", "INFO")
-    # LOG_CONSOLE_FMT = os.getenv("LOG_CONSOLE_FMT", "NinjaJsonFormatter")
-    # LOG_CONSOLE_PRINT_EXCEPTION = os.getenv("LOG_CONSOLE_PRINT_EXCEPTION", "True")
-    # LOG_CONSOLE_SYS_EXCEPTHOOK = os.getenv("LOG_CONSOLE_SYS_EXCEPTHOOK", "False")
-    # LOG_CONSOLE_EXTRAS = os.getenv("LOG_CONSOLE_EXTRAS", "All")
-    # LOG_CONSOLE_MAX_MESSAGE_LENGTH = os.getenv("LOG_CONSOLE_MAX_MESSAGE_LENGTH", "None")
-
-    # LOG_FILE_FILENAME = os.getenv("LOG_FILE_FILENAME", "logs.jsonl")
-    # LOG_FILE_LEVEL = os.getenv("LOG_FILE_LEVEL", "ERROR")
-    # LOG_FILE_FMT = os.getenv("LOG_FILE_FMT", "NinjaJsonFormatter")
-    # LOG_FILE_CLEAR_FILE_ON_SETUP = os.getenv("LOG_FILE_CLEAR_FILE_ON_SETUP", "True")
-    pass
 
 
 def _setup_log_console_handler(
