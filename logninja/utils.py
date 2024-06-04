@@ -34,6 +34,15 @@ LOG_RECORD_BUILTIN_ATTRS = {
 
 def get_message(record: logging.LogRecord, max_len: int | None) -> str:
     message = record.getMessage()
+    import json
+
+    try:
+        result = json.loads(message)
+        if result.get("message"):
+            message = result.get("message")
+    except Exception:
+        pass
+
     if max_len is None:
         return message
 
