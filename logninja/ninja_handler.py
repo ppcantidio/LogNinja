@@ -33,6 +33,7 @@ class NinjaHandler(logging.StreamHandler):
             self.console.print_json(formatted_message)
         else:
             self.console.print(formatted_message)
+            self.console.save_svg("table.svg", title="save_table_svg.py")
         self.flush()
 
         if record.exc_info and self.print_exception:

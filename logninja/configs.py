@@ -1,5 +1,6 @@
 import logging
 from dataclasses import dataclass
+from typing import List
 
 from logninja.console_interface import ConsoleInterface
 from logninja.ninja_console import NinjaConsole
@@ -21,3 +22,9 @@ class LogConsoleConfig:
     console: ConsoleInterface = NinjaConsole()
     print_exeption: bool = True
     sys_excepthook: bool = False
+
+
+@dataclass
+class RootLoggerConfig:
+    level: int = logging.DEBUG
+    filters: List[logging.Filter] = []

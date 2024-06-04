@@ -1,17 +1,14 @@
 import logging
-from contextvars import ContextVar
-from typing import List
 
-from logninja.configs import LogConsoleConfig, LogFileConfig
-from logninja.contextvars_filter import ContextVarsFilter
+from logninja.configs import LogConsoleConfig, LogFileConfig, RootLoggerConfig
 from logninja.logger import logger
 from logninja.ninja_handler import NinjaHandler
 
 
 def setup_logging(
-    contextvars: List[ContextVar] = [],
     log_file_config: LogFileConfig = None,
     log_console_config: LogConsoleConfig = LogConsoleConfig(),
+    root_logger_config: RootLoggerConfig = RootLoggerConfig(),
 ) -> None:
     if log_file_config is None and log_console_config is None:
         raise ValueError(
@@ -19,7 +16,9 @@ def setup_logging(
         )
 
     root_logger = logging.getLogger()
-    root_logger.setLevel(logging.DEBUG)
+    root_logger.setLevel(root_logger_config.level)
+    for filter_ in root_logger_config.filters:
+        root_logger.addFilter(filter_)
 
     if log_console_config:
         console_handler = _setup_log_console_handler(log_console_config)
@@ -30,8 +29,6 @@ def setup_logging(
         file_handler = _setup_log_file_handler(log_file_config)
         root_logger.addHandler(file_handler)
         logger.debug("File logging setup complete")
-
-    root_logger.addFilter(ContextVarsFilter(contextvars=contextvars))
 
     logger.debug("Logging setup complete", extra=dict(users="adfdfs"))
 

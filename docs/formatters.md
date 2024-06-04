@@ -1,3 +1,7 @@
+---
+hide:
+  - navigation
+---
 # Formatters
 Formatters are responsible for converting log records into text strings that can be displayed to the user or written to a file. A formatter typically takes a log record (an object that contains information about a logging event, such as the message, severity, timestamp, etc.) and returns a formatted string. They are tipcally called by our Handlers, at the case of LogNinja, more escifically by `NinjaHandler`. LogNinja provide some formatter that can be usefull, they are following the interface `logging.Formatter`.
 

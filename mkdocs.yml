@@ -1,1 +1,37 @@
-site_name: My Docs
+repo_url: https://github.com/ppcantidio/LogNinja
+repo_name: ppcantidio/LogNinja
+site_name: LogNinja
+theme:
+  name: 'material'
+  features:
+  - search.suggest
+  - search.highlight
+  - content.tabs.link
+  - navigation.indexes
+  - content.tooltips
+  - navigation.path
+  - content.code.annotate
+  - content.code.copy
+  - content.code.select
+  - navigation.tabs
+  palette:
+    primary: 'blue'
+    accent: 'cyan'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  icon:
+    repo: fontawesome/brands/git-alt 
+
+
+nav:
+  - LogNinja: index.md
+  - Getting Started: getting-started.md
+  - Learn: learn.md
+  - Code API: 
+      - code-api/index.md
+      - code-api/log-execution.md
+  - Contribute: contribute.md
+
+
+
