@@ -1,6 +1,5 @@
 from rich.console import Console
 
-from logninja.ninja_rich_console import NinjaRichConsole
 
 console = Console(record=True, no_color=True)
 console.print("""
