@@ -17,8 +17,6 @@ def setup_logging(
 
     root_logger = logging.getLogger()
     root_logger.setLevel(root_logger_config.level)
-    for filter_ in root_logger_config.filters:
-        root_logger.addFilter(filter_)
 
     if log_console_config:
         console_handler = _setup_log_console_handler(log_console_config)
@@ -29,6 +27,9 @@ def setup_logging(
         file_handler = _setup_log_file_handler(log_file_config)
         root_logger.addHandler(file_handler)
         logger.debug("File logging setup complete")
+
+    for filter_ in root_logger_config.filters:
+        root_logger.addFilter(filter_)
 
     logger.debug("Logging setup complete", extra=dict(users="adfdfs"))
 

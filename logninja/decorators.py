@@ -38,7 +38,7 @@ def log_execution(
             params = {"args": list(args), "kwargs": kwargs}
             logger_with_level(
                 f"Starting execution of function '{func.__qualname__}'",
-                extra={"params": params},
+                extra={"params": str(params)},
             )
 
         def log_end(end: float, start: float):
@@ -90,5 +90,4 @@ def log_execution(
 
         return async_wrapper if asyncio.iscoroutinefunction(func) else sync_wrapper
 
-    return decorator
     return decorator
