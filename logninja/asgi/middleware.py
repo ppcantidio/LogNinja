@@ -97,7 +97,7 @@ class LogNinjaASGIMiddleware:
     async def _set_contextvars_by_app_state(self, scope: Scope) -> None:
         for contextvar in self.contextvars_by_app_state:
             if hasattr(scope.get("app").state, contextvar.name) is not None:
-                contextvar.set(scope.get(contextvar.name))
+                contextvar.set(setattr(scope.get("app").state, contextvar.name))
 
     async def _get_path_with_query_string(self, scope: Scope):
         query_string = scope.get("query_string", b"").decode()
