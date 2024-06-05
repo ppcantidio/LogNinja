@@ -28,8 +28,9 @@ def setup_logging(
         root_logger.addHandler(file_handler)
         logger.debug("File logging setup complete")
 
-    for filter_ in root_logger_config.filters:
-        root_logger.addFilter(filter_)
+    for handler in root_logger.handlers:
+        for filter_ in root_logger_config.filters:
+            handler.addFilter(filter_)
 
     logger.debug("Logging setup complete", extra=dict(users="adfdfs"))
 
