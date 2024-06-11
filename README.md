@@ -1,4 +1,6 @@
 # *LogNinja*: Simple logging setup for Python
+![Texto alternativo](docs/assets/logo.jpg)
+
 <p align="center">
    <a href="https://github.com/ppcantidio/LogNinja/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-C06524" alt="License: MIT" /></a>
    <a href="https://pypi.org/project/LogNinja/"><img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue" alt="Supported Python versions of the current PyPI release." /></a>
