@@ -73,13 +73,12 @@ class LogNinjaASGIMiddleware:
         self.logger.info(
             f"""{client_host}:{client_port} - "{http_method} {url} HTTP/{http_version}" {status_code}""",
             extra={
-                "http": {
-                    "url": url,
-                    "method": http_method,
-                    "status_code": status_code,
-                    "version": http_version,
-                },
-                "network": {"client": {"ip": client_host, "port": client_port}},
+                "url": str(url),
+                "method": http_method,
+                "status_code": status_code,
+                "version": http_version,
+                "client_host": client_host,
+                "client_port": client_port,
                 "duration": process_time,
             },
         )
